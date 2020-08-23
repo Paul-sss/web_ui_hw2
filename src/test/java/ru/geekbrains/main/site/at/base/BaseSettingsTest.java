@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.base;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,10 +12,11 @@ public abstract class BaseSettingsTest {
 
     protected ChromeDriver driver;
     protected WebDriverWait wait30second;
+    protected WebDriverWait wait15second;
 
     @BeforeEach
     public void beforeAllTest() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
@@ -22,6 +24,7 @@ public abstract class BaseSettingsTest {
         driver.get("https://geekbrains.ru/career");
 
         wait30second = new WebDriverWait(driver, 30);
+        wait15second = new WebDriverWait(driver, 15);
     }
 
     @AfterEach
