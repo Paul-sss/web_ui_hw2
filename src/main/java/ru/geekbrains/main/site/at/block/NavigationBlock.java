@@ -1,9 +1,11 @@
 package ru.geekbrains.main.site.at.block;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.geekbrains.main.site.at.BasePage;
+import ru.geekbrains.main.site.at.page.ContentPage;
 
 public class NavigationBlock extends BasePage {
 
@@ -32,39 +34,41 @@ public class NavigationBlock extends BasePage {
         super(driver);
     }
 
-    public void clickButton(String nameButton){
+    @Step("нажатие на '{nameButton}'")
+    public ContentPage clickButton(String nameButton){
         switch (nameButton){
             case "Иконка" : {
                 this.icon.click();
-                return;
+                break;
             }
             case "Курсы" : {
                 this.buttonCourses.click();
-                return;
+                break;
             }
             case "Вебинары" : {
                 this.buttonWebinars.click();
-                return;
+                break;
             }
             case "Форум" : {
                 this.buttonForum.click();
-                return;
+                break;
             }
             case "Блог" : {
                 this.buttonBlog.click();
-                return;
+                break;
             }
             case "Тесты" : {
                 this.buttonTests.click();
-                return;
+                break;
             }
             case "Карьера" : {
                 this.buttonCareer.click();
-                return;
+                break;
             }
             default:{
                 throw new RuntimeException("Кнопки: "+nameButton+" нет на странице!");
             }
         }
+        return new ContentPage(driver);
     }
 }
